@@ -34,12 +34,16 @@ export default class Ip extends Component {
         currcodeNn: "",
         currflagval: "",
         userinfo: "",
-        browser:"",
-        browser1:"",
-        num5:"",
-        comname:"",
-        famven:"",
-        comicon:"",
+        browser: "",
+        browser1: "",
+        num5: "",
+        comname: "",
+        famven: "",
+        comicon: "",
+        macver: "",
+        macurl: "",
+        sunny:"",
+        sunny1:"",
     };
     componentDidMount() {
         this._mounted = true;
@@ -121,14 +125,19 @@ export default class Ip extends Component {
                                     .then(res => {
                                         axios
                                             .get(
-                                                `http://api.weatherstack.com/current?access_key=8138ef742eb16c0fd74d9281c9a52a69&query=jeddah`
+                                                `http://api.weatherstack.com/current?access_key=36e3c694224239f32b655ac68bfa9b81&query=${this.state.city}`
                                             )
                                             .then(res => {
+                                                console.log(res)
                                                 let weather = res.data;
+                                                let sunny = weather.current.weather_descriptions;
+                                                let sunny1 = Object.values(sunny) 
                                                 if (this._mounted) {
-                                                    this.setState({ weather });
+                                                    this.setState({ weather,sunny , sunny1});
 
                                                 }
+
+                                                console.log(sunny1);
 
 
                                             });
@@ -142,63 +151,66 @@ export default class Ip extends Component {
                                                 let currency = res.data;
                                                 let currflag = currency.quotes;
                                                 let moneykey = Object.keys(currflag)
-                                                let num5= Object.values(currflag)
+                                                let num5 = Object.values(currflag)
                                                 // let currflagval = currency.quotes.Object.keys(currflag);
                                                 if (this._mounted) {
 
-                                                    this.setState({ currency, currflag, moneykey ,num5});
+                                                    this.setState({ currency, currflag, moneykey, num5 });
                                                 }
 
                                             });
                                     })
                                     .then(res => {
 
+                                        // axios
+
+                                        //     .get(
+                                        //         `http://api.timezonedb.com/v2.1/get-time-zone?key=9AH6K7E39U2M&format=json&by=position&lat=${this.state.latitude}&lng=${this.state.longitude}`
+                                        //     )
+                                        //     .then(res => {
+                                        //         let timezone = res.data;
+                                        //         console.log(res)
+                                        //         // if (this._mounted) {
+                                        //             this.setState({ timezone });
+
+                                        //         // }
+                                        //         // this.setState({ done: true }));
+
+
+
+                                        //     }).then(res => {
+
                                         axios
 
                                             .get(
-                                                `http://api.timezonedb.com/v2.1/get-time-zone?key=9AH6K7E39U2M&format=json&by=position&lat=${this.state.latitude}&lng=${this.state.longitude}`
+                                                `http://api.userstack.com/api/detect?access_key=4f4408a7db0f444cba7457b87d979532&ua=Mozilla/5.0%20(Macintosh;%20Intel%20Mac%20OS%20X%2010_14_0)%20AppleWebKit/537.36%20(KHTML,%20like%20Gecko)%20Chrome/78.0.3904.70%20Safari/537.36`
                                             )
                                             .then(res => {
-                                                let timezone = res.data;
+                                                let userinfo = res.data;
+                                                let browser = userinfo.browser;
+                                                let browser1 = Object.keys(browser);
+                                                let comname = userinfo.browser.name;
+                                                let famven = userinfo.os.family_vendor;
+                                                let comicon = userinfo.os.icon;
+                                                let macver = userinfo.os.name;
+                                                let macurl = userinfo.os.url;
                                                 if (this._mounted) {
-                                                    this.setState({ timezone, done: true });
+                                                    this.setState({ comicon, macver, macurl, famven, userinfo, browser, browser1, comname, done: true });
 
                                                 }
+
+
+
+
                                                 // this.setState({ done: true }));
+                                                // console.log(browser);
+                                                // console.log(browser1);
+                                                // console.log(browser1);
+
+                                                // console.log(userinfo.os.Object.keys());
 
 
-
-                                            }).then(res => {
-
-                                                axios
-
-                                                    .get(
-                                                        `http://api.userstack.com/api/detect?access_key=4f4408a7db0f444cba7457b87d979532&ua=Mozilla/5.0%20(Macintosh;%20Intel%20Mac%20OS%20X%2010_14_0)%20AppleWebKit/537.36%20(KHTML,%20like%20Gecko)%20Chrome/78.0.3904.70%20Safari/537.36`
-                                                    )
-                                                    .then(res => {
-                                                        let userinfo = res.data;
-                                                        let browser = userinfo.browser;
-                                                        let browser1 = Object.keys(browser);
-                                                        let comname = userinfo.browser.name;
-                                                        let famven = userinfo.os.family_vendor;
-                                                        let comicon = userinfo.os.icon;
-                                                        if (this._mounted) {
-                                                            this.setState({comicon, famven,userinfo,browser,browser1 ,comname});
-
-                                                        }
-
-
-
-
-                                                        // this.setState({ done: true }));
-                                                        // console.log(browser);
-                                                        // console.log(browser1);
-                                                        // console.log(browser1);
-
-// console.log(userinfo.os.Object.keys());
-
-
-                                                    });
+                                                // });
                                             });
                                     });
                             });
@@ -212,7 +224,7 @@ export default class Ip extends Component {
 
     render() {
 
-        
+
 
         return (
 
@@ -309,8 +321,9 @@ export default class Ip extends Component {
                                             <Card.Text>
                                                 <Row>
                                                     <Col> <b>Brand :</b> </Col>
-                                                    {/* <Card.Img src={this.state.comicon}  />*/}
-                                                    <Col>icon </Col>
+                                                    <Col>
+                                                        <Card.Img src={this.state.comicon} style={{ width: "16px", height: "16px" }} />
+                                                    </Col>
                                                 </Row>
                                                 <Row>
                                                     <Col><b>Company name :</b> </Col>
@@ -324,7 +337,7 @@ export default class Ip extends Component {
                                                 <Row>
 
                                                     <Col><b>version</b></Col>
-                                                    <Col> 10.14 mojave</Col>
+                                                    <Col>{this.state.macver}</Col>
                                                 </Row>
                                                 <Row>
 
@@ -334,7 +347,12 @@ export default class Ip extends Component {
                                                 <Row>
 
                                                     <Col>  <b>version</b></Col>
-                                                    <Col>70.32.2.1.2</Col>
+                                                    <Col>{this.state.browser.version}</Col>
+                                                </Row>
+                                                <Row>
+
+
+                                                    <Col><a href={this.state.macurl} target="_blank">read More About {this.state.macver}</a></Col>
                                                 </Row>
 
 
@@ -349,10 +367,10 @@ export default class Ip extends Component {
                                             <Card.Text>
                                                 <Container>
                                                     <Row>
-                                                        <Col>sunny</Col>
-                                                        <Col>33°c</Col>
-                                                        {/* <Col><Card.Img className="sizeimg" src={this.state.weather.current.weather_icons}   /></Col>  */}
-                                                        {/* <Col>{this.state.weather.current.temperature}°c</Col> */}
+                                                        {/* <Col>sunny</Col> */}
+                                                        {/* <Col>33°c</Col> */}
+                                                        <Col><Card.Img className="sizeimg" src={this.state.weather.current.weather_icons}  style={{width: "32px", height: "32px"}} /> <br /> {this.state.sunny1}</Col> 
+                                                        <Col>{this.state.weather.current.temperature}°c</Col>
                                                     </Row>
 
 
@@ -385,7 +403,7 @@ export default class Ip extends Component {
                                         </Card.Body>
                                         <Card.Footer>
 
-                                            {/* <small className="text-muted">Last updated  {this.state.weather.current.observation_time} </small> */}
+                                            <small className="text-muted">Last updated  {this.state.weather.current.observation_time} </small>
                                         </Card.Footer>
                                     </Card>
                                 </CardGroup>
