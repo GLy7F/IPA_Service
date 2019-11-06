@@ -17,7 +17,7 @@ export default class Ip extends Component {
         done: undefined,
         city: null,
         info: "",
-        weather: "",
+        weather: false,
         currency: "",
         location: "",
         timezone: "",
@@ -128,7 +128,7 @@ export default class Ip extends Component {
                                                 `http://api.weatherstack.com/current?access_key=36e3c694224239f32b655ac68bfa9b81&query=${this.state.city}`
                                             )
                                             .then(res => {
-                                                console.log(res)
+                                                console.log('weather: ', res)
                                                 let weather = res.data;
                                                 let sunny = weather.current.weather_descriptions;
                                                 let sunny1 = Object.values(sunny) 
@@ -224,14 +224,14 @@ export default class Ip extends Component {
 
     render() {
 
-
+        console.log(this.state)
 
         return (
 
             <div>
                 <div>
                     <header className="App-header">
-                        {!this.state.done ? (
+                        {(!this.state.done && !this.state.weather) ? (
                             <ReactLoading type={"bars"} color={"white"} />
                         ) : (
 
