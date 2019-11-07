@@ -1,10 +1,12 @@
-# Your Project Title
+# IPA service
 
-One Paragraph of project description goes here
+site helps you get your information
 
 ## Description
 
-A description of your project. Explain what is the project about and what is the use for it.
+This site helps you get information
+From where you are to know the country details and city where you live
+And Connection information, device information, weather and currency
 
 ### Technical Used
 What technologies you used that helped you build this project. 
@@ -20,7 +22,7 @@ Example:
 
 ### Wireframes
 
-Your step by step planning sketch of your project, that you can post them as an image in here.
+soon...
 
 ### User Stories
 
@@ -31,19 +33,36 @@ Example:
 
 User must be able to:
 
-- View Example
-- Blablabla
-- Search Example
-- Fine Example
-- etc..
-
+- know where are i am
+- what my public ip
+- how the weather outside
+- how much my currency to $
 ```
 
 ---
 
 ## Planning and Development Process
 
-A basic story of your planning and developing this project.
+Day 1
+- Create github repository
+- Create react app
+- Import react bootstrap
+- Nav part & footer
+- route & pages
+- 404 error page
+
+Day 2
+- API call
+- state
+ 
+Day 3
+- css + styles. 70%
+- api result in html 80%
+- loading page before  api
+
+Day4
+- upload to github
+- upload to herokuapp
 
 ### Problem-Solving Strategy
 
@@ -55,7 +74,16 @@ List unsolved problems which would be fixed in future iterations.
 
 ## APIs Used
 
-List your APIs you have used in this project and explain why did you use it.
+```
+my-ip.io
+extreme-ip-lookup.com
+ipgeolocation.io
+ipstack.com
+ipapi.com
+weatherstack.com
+timezonedb.com
+userstack.com
+```
 
 ---
 
@@ -65,3 +93,7 @@ List your APIs you have used in this project and explain why did you use it.
 ---
 
  ## References
+- api documentation
+ - react bootstrap
+- react documentation
+- route

@@ -402,6 +402,7 @@ export default class Ip extends Component {
                                             </Card.Text>
                                         </Card.Body>
                                         <Card.Footer>
+                                        {/* <small className="text-muted">Last updated  9:35 AM </small> */}
 
                                             <small className="text-muted">Last updated  {this.state.weather.current.observation_time} </small>
                                         </Card.Footer>
